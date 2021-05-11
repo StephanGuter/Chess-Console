@@ -31,6 +31,10 @@
 
         public void PlacePiece(Piece p, Position pos)
         {
+            if (PieceExists(pos))
+            {
+                throw new BoardException("Já existe uma peça nesta posição!");
+            }
             pieces[pos.line, pos.column] = p;
             p.position = pos;
         }
