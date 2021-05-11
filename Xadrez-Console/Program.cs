@@ -1,7 +1,7 @@
 ﻿using System;
 using board;
 
-namespace Xadrez_Console
+namespace chess_console
 {
     class Program
     {
