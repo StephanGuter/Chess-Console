@@ -8,16 +8,13 @@ namespace chess_console
     {
         static void Main(string[] args)
         {
+
             Board b = new Board(8,8);
 
-            ChessPosition pos1 = new ChessPosition('a', 1); // 7, 0
-            ChessPosition pos2 = new ChessPosition('f', 3); // 5, 5
+            b.PlacePiece(new King(Color.Black, b), new Position(1, 1));
+            b.PlacePiece(new Queen(Color.White, b), new Position(5, 7));
 
-
-            Console.WriteLine(pos1.ToPosition().ToString());
-            Console.WriteLine(pos2.ToPosition().ToString());
-
-            //Console.WriteLine(pos);
+            Display.PrintBoard(b);
 
             Console.ReadLine();
         }
