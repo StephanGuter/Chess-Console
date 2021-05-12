@@ -8,20 +8,16 @@ namespace chess_console
     {
         static void Main(string[] args)
         {
-            try
-            {
-                Board b = new Board(8, 8);
+            Board b = new Board(8,8);
 
-                b.PlacePiece(new King(Color.Black, b), new Position(1, 3));
-                b.PlacePiece(new King(Color.White, b), new Position(3, 5));
-                b.PlacePiece(new Queen(Color.White, b), new Position(5, 6));
-                //b.PlacePiece(new Queen(Color.White, b), new Position(5, 6));
+            ChessPosition pos1 = new ChessPosition('a', 1); // 7, 0
+            ChessPosition pos2 = new ChessPosition('f', 3); // 5, 5
 
-                Display.printBoard(b);
-            } catch (BoardException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+
+            Console.WriteLine(pos1.ToPosition().ToString());
+            Console.WriteLine(pos2.ToPosition().ToString());
+
+            //Console.WriteLine(pos);
 
             Console.ReadLine();
         }
