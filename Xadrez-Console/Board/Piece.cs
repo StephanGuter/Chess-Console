@@ -14,5 +14,10 @@
             this.board = board;
             MovementAmount = 0;
         }
+
+        public void IncreaseMovementAmount()
+        {
+            MovementAmount++;
+        }
     }
 }

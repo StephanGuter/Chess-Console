@@ -37,6 +37,20 @@
             }
             pieces[pos.line, pos.column] = p;
             p.position = pos;
+            p.IncreaseMovementAmount();
+        }
+
+        public Piece PickUpPiece(Position pos)
+        {
+            if (Piece(pos) == null)
+            {
+                return null;
+            }
+
+            Piece p = Piece(pos);
+            p.position = null;
+            pieces[pos.line, pos.column] = null;
+            return p;
         }
 
         public bool IsValidPosition(Position pos)

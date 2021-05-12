@@ -8,13 +8,30 @@ namespace chess_console
     {
         static void Main(string[] args)
         {
+            try
+            {
+                ChessMatch match = new ChessMatch();
 
-            Board b = new Board(8,8);
+                while (!match.ended)
+                {
+                    Console.Clear();
+                    Display.PrintBoard(match.board);
 
-            b.PlacePiece(new King(Color.Black, b), new Position(1, 1));
-            b.PlacePiece(new Queen(Color.White, b), new Position(5, 7));
+                    Console.WriteLine();
 
-            Display.PrintBoard(b);
+                    Console.Write("Origem: ");
+                    Position origin = Display.ReadChessPosition().ToPosition();
+
+                    Console.Write("Destino: ");
+                    Position destination = Display.ReadChessPosition().ToPosition();
+
+                    match.MovePiece(origin, destination);
+                }
+            }
+            catch (BoardException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             Console.ReadLine();
         }
