@@ -14,21 +14,35 @@ namespace chess_console
 
                 while (!match.ended)
                 {
-                    Console.Clear();
-                    Display.PrintBoard(match.board);
+                    try
+                    {
+                        Console.Clear();
+                        Display.PrintBoard(match.board);
 
-                    Console.Write("Origem: ");
-                    Position origin = Display.ReadChessPosition().ToPosition();
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: " + match.turn);
+                        Console.WriteLine("Aguardando jogada: " + match.currentPlayer);
 
-                    bool[,] possiblePositions = match.board.Piece(origin).PossibleMovements();
+                        Console.WriteLine();
+                        Console.Write("Origem: ");
+                        Position origin = Display.ReadChessPosition().ToPosition();
+                        match.ValidateOriginPosition(origin);
 
-                    Console.Clear();
-                    Display.PrintBoard(match.board, possiblePositions);
+                        Console.Clear();
+                        bool[,] possiblePositions = match.board.Piece(origin).PossibleMovements();
+                        Display.PrintBoard(match.board, possiblePositions);
 
-                    Console.Write("Destino: ");
-                    Position destination = Display.ReadChessPosition().ToPosition();
+                        Console.Write("Destino: ");
+                        Position destination = Display.ReadChessPosition().ToPosition();
+                        match.ValidateDestinationPosition(origin, destination);
 
-                    match.MovePiece(origin, destination);
+                        match.PerformMove(origin, destination);
+                    }
+                    catch (BoardException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
             }
             catch (BoardException e)

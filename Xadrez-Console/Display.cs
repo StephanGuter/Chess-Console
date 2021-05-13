@@ -44,7 +44,6 @@ namespace chess_console
                 Console.WriteLine();
             }
             Console.WriteLine("  a b c d e f g h ");
-            Console.WriteLine();
         }
 
         public static void PrintPiece(Piece piece)
