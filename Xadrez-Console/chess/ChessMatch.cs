@@ -28,18 +28,18 @@ namespace chess
         public void PlacePieces()
         {
             board.PlacePiece(new King(Color.Black, board), new ChessPosition('d', 8).ToPosition());
-            board.PlacePiece(new Queen(Color.Black, board), new ChessPosition('c', 8).ToPosition());
-            board.PlacePiece(new Queen(Color.Black, board), new ChessPosition('c', 7).ToPosition());
-            board.PlacePiece(new Queen(Color.Black, board), new ChessPosition('d', 7).ToPosition());
-            board.PlacePiece(new Queen(Color.Black, board), new ChessPosition('e', 7).ToPosition());
-            board.PlacePiece(new Queen(Color.Black, board), new ChessPosition('e', 8).ToPosition());
+            board.PlacePiece(new Rook(Color.Black, board), new ChessPosition('c', 8).ToPosition());
+            board.PlacePiece(new Rook(Color.Black, board), new ChessPosition('c', 7).ToPosition());
+            board.PlacePiece(new Rook(Color.Black, board), new ChessPosition('d', 7).ToPosition());
+            board.PlacePiece(new Rook(Color.Black, board), new ChessPosition('e', 7).ToPosition());
+            board.PlacePiece(new Rook(Color.Black, board), new ChessPosition('e', 8).ToPosition());
 
             board.PlacePiece(new King(Color.White, board), new ChessPosition('d', 1).ToPosition());
-            board.PlacePiece(new Queen(Color.White, board), new ChessPosition('c', 1).ToPosition());
-            board.PlacePiece(new Queen(Color.White, board), new ChessPosition('c', 2).ToPosition());
-            board.PlacePiece(new Queen(Color.White, board), new ChessPosition('d', 2).ToPosition());
-            board.PlacePiece(new Queen(Color.White, board), new ChessPosition('e', 2).ToPosition());
-            board.PlacePiece(new Queen(Color.White, board), new ChessPosition('e', 1).ToPosition());
+            board.PlacePiece(new Rook(Color.White, board), new ChessPosition('c', 1).ToPosition());
+            board.PlacePiece(new Rook(Color.White, board), new ChessPosition('c', 2).ToPosition());
+            board.PlacePiece(new Rook(Color.White, board), new ChessPosition('d', 2).ToPosition());
+            board.PlacePiece(new Rook(Color.White, board), new ChessPosition('e', 2).ToPosition());
+            board.PlacePiece(new Rook(Color.White, board), new ChessPosition('e', 1).ToPosition());
         }
     }
 }

@@ -17,10 +17,13 @@ namespace chess_console
                     Console.Clear();
                     Display.PrintBoard(match.board);
 
-                    Console.WriteLine();
-
                     Console.Write("Origem: ");
                     Position origin = Display.ReadChessPosition().ToPosition();
+
+                    bool[,] possiblePositions = match.board.Piece(origin).PossibleMovements();
+
+                    Console.Clear();
+                    Display.PrintBoard(match.board, possiblePositions);
 
                     Console.Write("Destino: ");
                     Position destination = Display.ReadChessPosition().ToPosition();

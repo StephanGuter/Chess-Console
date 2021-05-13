@@ -10,5 +10,10 @@ namespace chess
         {
             return "D";
         }
+
+        public override bool[,] PossibleMovements()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
