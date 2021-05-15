@@ -17,11 +17,7 @@ namespace chess_console
                     try
                     {
                         Console.Clear();
-                        Display.PrintBoard(match.board);
-
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + match.turn);
-                        Console.WriteLine("Aguardando jogada: " + match.currentPlayer);
+                        Display.PrintMatch(match);
 
                         Console.WriteLine();
                         Console.Write("Origem: ");
@@ -32,6 +28,7 @@ namespace chess_console
                         bool[,] possiblePositions = match.board.Piece(origin).PossibleMovements();
                         Display.PrintBoard(match.board, possiblePositions);
 
+                        Console.WriteLine();
                         Console.Write("Destino: ");
                         Position destination = Display.ReadChessPosition().ToPosition();
                         match.ValidateDestinationPosition(origin, destination);
