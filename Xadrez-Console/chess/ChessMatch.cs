@@ -96,7 +96,7 @@ namespace chess
 
         public void ValidateDestinationPosition(Position origin, Position destination)
         {
-            if (!board.Piece(origin).MightMoveTo(destination))
+            if (!board.Piece(origin).PossibleMove(destination))
             {
                 throw new BoardException("Posição de destino inválida!");
             }
