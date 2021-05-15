@@ -20,6 +20,11 @@
             MovementAmount++;
         }
 
+        public void DecreaseMovementAmount()
+        {
+            MovementAmount--;
+        }
+
         public bool PossibleMovementsExists()
         {
             bool[,] matrix = PossibleMovements();

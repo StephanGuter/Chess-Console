@@ -14,14 +14,9 @@ namespace chess_console
             PrintCapturedPieces(match);
             Console.WriteLine();
             Console.WriteLine("Turno: " + match.turn);
-
-            string colorName;
-            if (match.currentPlayer == Color.White)
-                colorName = "Brancas";
-            else
-                colorName = "Pretas";
-            
-            Console.WriteLine("Aguardando jogada: " + colorName);
+            Console.WriteLine("Aguardando jogada: " + match.ColorName(match.currentPlayer));
+            if (match.check)
+                Console.WriteLine("XEQUE!");           
         }
 
         public static void PrintCapturedPieces(ChessMatch match)
