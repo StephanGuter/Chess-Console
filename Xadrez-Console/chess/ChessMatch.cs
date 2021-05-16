@@ -39,21 +39,72 @@ namespace chess
             board.PlacePiece(movingPiece, destination);
             if (capturedPiece != null)
                 capturedPieces.Add(capturedPiece);
+
+            // # Special move: castling
+            if (movingPiece is King)
+            {
+                // Castling king side
+                if (destination.column == origin.column + 2)
+                {
+                    Position rookOrigin = new Position(origin.line, origin.column + 3);
+                    Position rookDestination = new Position(origin.line, origin.column + 1);
+                    Piece rook = board.PickUpPiece(rookOrigin);
+                    board.PlacePiece(rook, rookDestination);
+                }
+
+                // Castling queen side
+                if (destination.column == origin.column - 2)
+                {
+                    Position rookOrigin = new Position(origin.line, origin.column - 4);
+                    Position rookDestination = new Position(origin.line, origin.column - 1);
+                    Piece rook = board.PickUpPiece(rookOrigin);
+                    board.PlacePiece(rook, rookDestination);
+                }
+            }
+
             return capturedPiece;
         }
 
         private void UndoMovePiece(Position origin, Position destination, Piece capturedPiece)
         {
-            Piece p = board.PickUpPiece(destination);
-            p.DecreaseMovementAmount();
-            if (capturedPiece != null) {
+            Piece movingPiece = board.PickUpPiece(destination);
+            movingPiece.DecreaseMovementAmount();
+            if (capturedPiece != null)
+            {
                 capturedPiece.DecreaseMovementAmount();
                 board.PlacePiece(capturedPiece, destination);
                 capturedPiece.DecreaseMovementAmount();
                 capturedPieces.Remove(capturedPiece);
             }
-            board.PlacePiece(p, origin);
-            p.DecreaseMovementAmount();
+            board.PlacePiece(movingPiece, origin);
+            movingPiece.DecreaseMovementAmount();
+
+            // # Special move: castling
+            if (movingPiece is King)
+            {
+                // Castling king side
+                if (destination.column == origin.column + 2)
+                {
+                    Position rookOrigin = new Position(origin.line, origin.column + 3);
+                    Position rookDestination = new Position(origin.line, origin.column + 1);
+                    Piece rook = board.PickUpPiece(rookDestination);
+                    rook.DecreaseMovementAmount();
+                    board.PlacePiece(rook, rookOrigin);
+                    rook.DecreaseMovementAmount();
+                }
+
+                // Castling queen side
+                if (destination.column == origin.column - 2)
+                {
+                    Position rookOrigin = new Position(origin.line, origin.column - 4);
+                    Position rookDestination = new Position(origin.line, origin.column - 1);
+                    Piece rook = board.PickUpPiece(rookDestination);
+                    rook.DecreaseMovementAmount();
+                    board.PlacePiece(rook, rookOrigin);
+                    rook.DecreaseMovementAmount();
+                }
+            }
+
         }
 
         public void PerformMove(Position origin, Position destination)
@@ -109,7 +160,7 @@ namespace chess
         private void ChangePlayer()
         {
             if (currentPlayer == Color.White)
-                currentPlayer = Color.Black;           
+                currentPlayer = Color.Black;
             else
                 currentPlayer = Color.White;
         }
@@ -175,7 +226,7 @@ namespace chess
             {
                 bool[,] matrix = p.PossibleMovements();
                 if (matrix[king.position.line, king.position.column])
-                    return true;              
+                    return true;
             }
             return false;
         }
@@ -217,20 +268,6 @@ namespace chess
 
         public void PlacePieces()
         {
-            //PlaceNewPiece(new King(Color.Black, board), 'd', 8);
-            //PlaceNewPiece(new Rook(Color.Black, board), 'c', 8);
-            //PlaceNewPiece(new Rook(Color.Black, board), 'c', 7);
-            //PlaceNewPiece(new Rook(Color.Black, board), 'd', 7);
-            //PlaceNewPiece(new Rook(Color.Black, board), 'e', 7);
-            //PlaceNewPiece(new Rook(Color.Black, board), 'e', 8);
-
-            //PlaceNewPiece(new King(Color.White, board), 'd', 1);
-            //PlaceNewPiece(new Rook(Color.White, board), 'c', 1);
-            //PlaceNewPiece(new Rook(Color.White, board), 'c', 2);
-            //PlaceNewPiece(new Rook(Color.White, board), 'd', 2);
-            //PlaceNewPiece(new Rook(Color.White, board), 'e', 2);
-            //PlaceNewPiece(new Rook(Color.White, board), 'e', 1);
-
             for (int c = 0; c < board.lines; c++)
             {
                 PlaceNewPiece(new Pawn(Color.White, board), Convert.ToChar(97 + c), 2);
@@ -254,8 +291,8 @@ namespace chess
             PlaceNewPiece(new Queen(Color.White, board), 'd', 1);
             PlaceNewPiece(new Queen(Color.Black, board), 'd', 8);
 
-            PlaceNewPiece(new King(Color.White, board), 'e', 1);
-            PlaceNewPiece(new King(Color.Black, board), 'e', 8);
+            PlaceNewPiece(new King(Color.White, board, this), 'e', 1);
+            PlaceNewPiece(new King(Color.Black, board, this), 'e', 8);
         }
     }
 }
