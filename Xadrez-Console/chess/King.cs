@@ -6,7 +6,8 @@ namespace chess
     {
         private ChessMatch _match;
 
-        public King(Color color, Board board, ChessMatch match) : base(color, board) {
+        public King(Color color, Board board, ChessMatch match) : base(color, board)
+        {
             _match = match;
         }
 
