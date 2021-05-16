@@ -59,7 +59,7 @@ namespace chess
                 pos.line += 1;
             }
 
-            // Right
+            // Left
             pos.SetValues(position.line, position.column - 1);
             while (board.IsValidPosition(pos) && MightMove(pos))
             {

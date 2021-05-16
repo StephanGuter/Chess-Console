@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using board;
+
 namespace chess
 {
     class ChessMatch
@@ -46,10 +47,13 @@ namespace chess
             Piece p = board.PickUpPiece(destination);
             p.DecreaseMovementAmount();
             if (capturedPiece != null) {
+                capturedPiece.DecreaseMovementAmount();
                 board.PlacePiece(capturedPiece, destination);
+                capturedPiece.DecreaseMovementAmount();
                 capturedPieces.Remove(capturedPiece);
             }
             board.PlacePiece(p, origin);
+            p.DecreaseMovementAmount();
         }
 
         public void PerformMove(Position origin, Position destination)
@@ -213,19 +217,45 @@ namespace chess
 
         public void PlacePieces()
         {
-            PlaceNewPiece(new King(Color.Black, board), 'd', 8);
-            PlaceNewPiece(new Rook(Color.Black, board), 'c', 8);
-            PlaceNewPiece(new Rook(Color.Black, board), 'c', 7);
-            PlaceNewPiece(new Rook(Color.Black, board), 'd', 7);
-            PlaceNewPiece(new Rook(Color.Black, board), 'e', 7);
-            PlaceNewPiece(new Rook(Color.Black, board), 'e', 8);
+            //PlaceNewPiece(new King(Color.Black, board), 'd', 8);
+            //PlaceNewPiece(new Rook(Color.Black, board), 'c', 8);
+            //PlaceNewPiece(new Rook(Color.Black, board), 'c', 7);
+            //PlaceNewPiece(new Rook(Color.Black, board), 'd', 7);
+            //PlaceNewPiece(new Rook(Color.Black, board), 'e', 7);
+            //PlaceNewPiece(new Rook(Color.Black, board), 'e', 8);
 
-            PlaceNewPiece(new King(Color.White, board), 'd', 1);
-            PlaceNewPiece(new Rook(Color.White, board), 'c', 1);
-            PlaceNewPiece(new Rook(Color.White, board), 'c', 2);
-            PlaceNewPiece(new Rook(Color.White, board), 'd', 2);
-            PlaceNewPiece(new Rook(Color.White, board), 'e', 2);
-            PlaceNewPiece(new Rook(Color.White, board), 'e', 1);
+            //PlaceNewPiece(new King(Color.White, board), 'd', 1);
+            //PlaceNewPiece(new Rook(Color.White, board), 'c', 1);
+            //PlaceNewPiece(new Rook(Color.White, board), 'c', 2);
+            //PlaceNewPiece(new Rook(Color.White, board), 'd', 2);
+            //PlaceNewPiece(new Rook(Color.White, board), 'e', 2);
+            //PlaceNewPiece(new Rook(Color.White, board), 'e', 1);
+
+            for (int c = 0; c < board.lines; c++)
+            {
+                PlaceNewPiece(new Pawn(Color.White, board), Convert.ToChar(97 + c), 2);
+                PlaceNewPiece(new Pawn(Color.Black, board), Convert.ToChar(97 + c), 7);
+            }
+            PlaceNewPiece(new Rook(Color.White, board), 'a', 1);
+            PlaceNewPiece(new Rook(Color.Black, board), 'a', 8);
+            PlaceNewPiece(new Rook(Color.White, board), 'h', 1);
+            PlaceNewPiece(new Rook(Color.Black, board), 'h', 8);
+
+            PlaceNewPiece(new Knight(Color.White, board), 'b', 1);
+            PlaceNewPiece(new Knight(Color.Black, board), 'b', 8);
+            PlaceNewPiece(new Knight(Color.White, board), 'g', 1);
+            PlaceNewPiece(new Knight(Color.Black, board), 'g', 8);
+
+            PlaceNewPiece(new Bishop(Color.White, board), 'c', 1);
+            PlaceNewPiece(new Bishop(Color.Black, board), 'c', 8);
+            PlaceNewPiece(new Bishop(Color.White, board), 'f', 1);
+            PlaceNewPiece(new Bishop(Color.Black, board), 'f', 8);
+
+            PlaceNewPiece(new Queen(Color.White, board), 'd', 1);
+            PlaceNewPiece(new Queen(Color.Black, board), 'd', 8);
+
+            PlaceNewPiece(new King(Color.White, board), 'e', 1);
+            PlaceNewPiece(new King(Color.Black, board), 'e', 8);
         }
     }
 }

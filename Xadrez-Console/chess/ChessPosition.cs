@@ -1,5 +1,4 @@
-﻿using System;
-using board;
+﻿using board;
 
 namespace chess
 {

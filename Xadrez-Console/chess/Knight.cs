@@ -2,16 +2,16 @@
 
 namespace chess
 {
-    class King : Piece
+    class Knight : Piece
     {
-        public King(Color color, Board board) : base(color, board) { }
+        public Knight(Color color, Board board) : base(color, board) { }
 
         public override string ToString()
         {
-            return "R";
+            return "C";
         }
 
-        private bool MightMove(Position pos) 
+        private bool MightMove(Position pos)
         {
             Piece p = board.Piece(pos);
             return p == null || p.color != color;
@@ -23,57 +23,57 @@ namespace chess
 
             Position pos = new Position(0, 0);
 
-            // Up
-            pos.SetValues(position.line - 1, position.column);
+            // Up-Left
+            pos.SetValues(position.line - 2, position.column - 1);
             if (board.IsValidPosition(pos) && MightMove(pos))
             {
                 matrix[pos.line, pos.column] = true;
             }
 
             // Up-Right
-            pos.SetValues(position.line - 1, position.column + 1);
+            pos.SetValues(position.line - 2, position.column + 1);
             if (board.IsValidPosition(pos) && MightMove(pos))
             {
                 matrix[pos.line, pos.column] = true;
             }
 
-            // Right
-            pos.SetValues(position.line, position.column + 1);
+            // Right-Up
+            pos.SetValues(position.line - 1, position.column + 2);
+            if (board.IsValidPosition(pos) && MightMove(pos))
+            {
+                matrix[pos.line, pos.column] = true;
+            }
+
+            // Right-Down
+            pos.SetValues(position.line + 1, position.column + 2);
             if (board.IsValidPosition(pos) && MightMove(pos))
             {
                 matrix[pos.line, pos.column] = true;
             }
 
             // Down-Right
-            pos.SetValues(position.line + 1, position.column + 1);
-            if (board.IsValidPosition(pos) && MightMove(pos))
-            {
-                matrix[pos.line, pos.column] = true;
-            }
-
-            // Down
-            pos.SetValues(position.line + 1, position.column);
+            pos.SetValues(position.line + 2, position.column + 1);
             if (board.IsValidPosition(pos) && MightMove(pos))
             {
                 matrix[pos.line, pos.column] = true;
             }
 
             // Down-Left
-            pos.SetValues(position.line + 1, position.column - 1);
+            pos.SetValues(position.line + 2, position.column - 1);
             if (board.IsValidPosition(pos) && MightMove(pos))
             {
                 matrix[pos.line, pos.column] = true;
             }
 
-            // Left
-            pos.SetValues(position.line, position.column - 1);
+            // Left-Down
+            pos.SetValues(position.line + 1, position.column - 2);
             if (board.IsValidPosition(pos) && MightMove(pos))
             {
                 matrix[pos.line, pos.column] = true;
             }
 
-            // Up-Left
-            pos.SetValues(position.line - 1, position.column - 1);
+            // Left-Up
+            pos.SetValues(position.line - 1, position.column - 2);
             if (board.IsValidPosition(pos) && MightMove(pos))
             {
                 matrix[pos.line, pos.column] = true;

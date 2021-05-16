@@ -32,9 +32,8 @@
         public void PlacePiece(Piece p, Position pos)
         {
             if (PieceExists(pos))
-            {
                 throw new BoardException("Já existe uma peça nesta posição!");
-            }
+
             pieces[pos.line, pos.column] = p;
             p.position = pos;
             p.IncreaseMovementAmount();
@@ -43,9 +42,7 @@
         public Piece PickUpPiece(Position pos)
         {
             if (Piece(pos) == null)
-            {
                 return null;
-            }
 
             Piece p = Piece(pos);
             p.position = null;
@@ -56,21 +53,15 @@
         public bool IsValidPosition(Position pos)
         {
             if (pos.line < 0 || pos.line >= lines || pos.column < 0 || pos.column >= columns)
-            {
                 return false;
-            }
             else
-            {
                 return true;
-            }
         }
 
         public void ValidatePosition(Position pos)
         {
             if (!IsValidPosition(pos))
-            {
                 throw new BoardException("Posição inválida!");
-            }
         }
     }
 }

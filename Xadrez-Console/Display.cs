@@ -1,7 +1,7 @@
-﻿using board;
-using chess;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using board;
+using chess;
 
 namespace chess_console
 {
