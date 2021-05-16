@@ -150,6 +150,20 @@ namespace chess
                 throw new BoardException("Você não pode se colocar em xeque!");
             }
 
+            // # Special move: promotion
+            Piece movingPiece = board.Piece(destination);
+            if (movingPiece is Pawn)
+            {
+                if ((movingPiece.color == Color.White && destination.line == 0) || (movingPiece.color == Color.Black && destination.line == 7))
+                {
+                    movingPiece = board.PickUpPiece(destination);
+                    pieces.Remove(movingPiece);
+                    Piece queen = new Queen(movingPiece.color, board);
+                    board.PlacePiece(queen, destination);
+                    pieces.Add(queen);
+                }
+            }
+
             if (IsInCheck(Adversary(currentPlayer)))
                 check = true;
             else
@@ -164,7 +178,6 @@ namespace chess
             }
 
             // # Special move: en passant
-            Piece movingPiece = board.Piece(destination);
             if (movingPiece is Pawn && (destination.line == origin.line - 2 || destination.line == origin.line + 2))
                 enPassantVulnerable = movingPiece;
             else

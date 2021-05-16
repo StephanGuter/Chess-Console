@@ -82,11 +82,11 @@ namespace chess
             if (position.line == enPassantLine)
             {
                 Position onTheLeft = new Position(position.line, position.column - 1);
-                if (board.IsValidPosition(onTheLeft) && board.Piece(onTheLeft) == _match.enPassantVulnerable)
+                if (board.IsValidPosition(onTheLeft) && board.Piece(onTheLeft) != null && board.Piece(onTheLeft) == _match.enPassantVulnerable)
                     matrix[onTheLeft.line + direction, onTheLeft.column] = true;
 
                 Position onTheRight = new Position(position.line, position.column + 1);
-                if (board.IsValidPosition(onTheRight) && board.Piece(onTheRight) == _match.enPassantVulnerable)
+                if (board.IsValidPosition(onTheRight) && board.Piece(onTheRight) != null && board.Piece(onTheRight) == _match.enPassantVulnerable)
                     matrix[onTheRight.line + direction, onTheRight.column] = true;
             }
 
