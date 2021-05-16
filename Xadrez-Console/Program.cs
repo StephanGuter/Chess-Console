@@ -8,6 +8,7 @@ namespace chess_console
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             try
             {
                 ChessMatch match = new ChessMatch();

@@ -54,26 +54,36 @@ namespace chess_console
 
         public static void PrintBoard(Board board)
         {
+            ConsoleColor orfg = Console.ForegroundColor;
+
             for (int i = 0; i < board.lines; i++)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(8 - i + " ");
+                Console.ForegroundColor = orfg;
                 for (int j = 0; j < board.columns; j++)
                 {
                     PrintPiece(board.Piece(i, j));
                 }
                 Console.WriteLine();
             }
+            orfg = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("  a b c d e f g h ");
+            Console.ForegroundColor = orfg;
         }
 
         public static void PrintBoard(Board board, bool[,] possiblePositions)
         {
+            ConsoleColor orfg = Console.ForegroundColor;
             ConsoleColor orbg = Console.BackgroundColor;
             ConsoleColor ppbg = ConsoleColor.DarkGray;
 
             for (int i = 0; i < board.lines; i++)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(8 - i + " ");
+                Console.ForegroundColor = orfg;
                 for (int j = 0; j < board.columns; j++)
                 {
                     if (possiblePositions[i, j])
@@ -89,7 +99,10 @@ namespace chess_console
                 }
                 Console.WriteLine();
             }
+            orfg = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("  a b c d e f g h ");
+            Console.ForegroundColor = orfg;
         }
 
         public static void PrintPiece(Piece piece)
